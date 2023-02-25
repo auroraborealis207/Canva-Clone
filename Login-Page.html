@@ -7,15 +7,34 @@
     
     <style>
         .text_input {
-            background-color: aqua;
-            
+            background-color: rgb(144, 150, 150);
+            border-style:unset;
+            border-radius: 5px;
+            border-color:rgb(132, 187, 238);
+            position: absolute;
+            top:38%;
+            left: 38%;
+            height:6%;
+            width:24%;
+            font-size: 150%;
+            color:rgb(4, 49, 126);
+        }
+
+        #password{
+            top:54%
+        }
+        
+        p{
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+            transform:rotate(90deg)
         }
     </style>
 
     <body>
-        
+        <!--<p>helo this is Sideways</p>-->
         <input type="text" id="user" class="text_input"/>
-        <input type="password" id="password" class="text_input"/>
+        <input type="password" id="password" id ="bottom" class="text_input"/>
         <input type="submit" onClick="check_credentials()">
         <script type="text/javascript" src="Login.js"></script>
         

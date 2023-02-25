@@ -2,27 +2,76 @@
 <html>
     <head>
 		<title>Drawbli</title>
-		<link rel="icon" href="Images\Icon Place Holder.ico">
+		<link rel="Squish_to_parent" href="Images"Squish_to_parent Place Holder.ico">
 	</head>
 
+    <style>
+        body{
+            margin:0px;
+            
+            display:flex;
+            justify-content: space-between;
+        }
+        div{
+            background-color: beige;
+            padding:5px
+        }
+
+        #end-column{
+            background: rgb(103, 178, 247);
+            width:10%;
+        }
+
+        .Squish_to_parent_width{
+            width:100%;
+            
+        }
+
+        .Squish_to_parent_height{
+            height:100%;
+        }
+
+        #CenterColumn{
+            width:90%;
+        }
+
+        #Top_Bar{
+            background-color:aquamarine;
+            height:5%;
+        }
+        #icon{
+            background-color: rgb(109, 243, 246);
+        }
+
+        #Insert_Images{
+
+        }
+        
+    </style>
+
     <body>
-        <div bg_color = "#0387FC">
-            <div bg_color = "#FFFFFF">
-                <image src = "Title - trans.png"></image>
+        <div id = "end-column">
+            <div >
+                <image src = "Title - trans.png" id= "icon"class= "Squish_to_parent_width" width = 150px></image>
             </div>
-            <div bg_color = "green">
-                <image src = "Title.png"></image>
+            <div >
+                <image src = "Title.png" class="Squish_to_parent_width"></image>
+                <p id="Insert_Images" onclick="insert_image()">Insert Images</p>
+                <button onclick="document.getElementById('file-input').click();">Open</button>
+                <input id="file-input" type="file" name="name" style="display: none;" />
             </div>
         </div>
-        <div bg_color = "blue">
-            <div bg_color = "magenta">
-            
+        <div id="CenterColumn">
+            <div id= "Top_Bar">
+                <image src = "Title.png" class="Squish_to_parent_height"></image>
             </div>
-            <div bg_color = "pink">
-            
-            </div bg_color = black>
+            <div id="Drawbli_Area">
+                <!--<image src = "Title.png"></image>-->
+                
+            </div >
         </div>
     </body>
 
+    <script type="text/javascript" src="Mainpage.js"></script>
 
 </html>
