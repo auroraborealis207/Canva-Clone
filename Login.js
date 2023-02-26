@@ -15,8 +15,7 @@ function check_credentials (){
 
 function read_csv (username,password_){
    // console.log(read_file("login-data.csv"))
-    var fr=new FileReader();
-    fr.readAsText(text_array)
-    console.log(text_array[0])
-
+   const fs = require('fs')
+   reader= readFile("Login-data.txt");
+reader.
 }

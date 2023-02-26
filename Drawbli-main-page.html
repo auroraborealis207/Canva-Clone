@@ -2,7 +2,7 @@
 <html>
     <head>
 		<title>Drawbli</title>
-		<link rel="Squish_to_parent" href="Images"Squish_to_parent Place Holder.ico">
+		<link rel="icon" href="Title icon.ico">
 	</head>
 
     <style>
@@ -51,10 +51,15 @@
             border-style: none;
             text-align: center;
         }
+
+        #Canvas{
+            z-index: 0;
+            position:absolute;
+        }
         
     </style>
 
-    <body >
+    <body onclick="detect_outside_text_edit()">
         <input id="file-input" type="file" name="name" style="display: none;" />
         <div id = "end-column">
             <div >
@@ -63,16 +68,42 @@
             <div >
                 <p id="Insert_Images" class = "Side_buttons" onclick="insert_image()">Insert Images</p>
                 <p id="Insert_Text" class = "Side_buttons" onclick="insert_text()">Insert Text Boxes</p>
-                
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p> 
+
             </div>
         </div>
         <div id="CenterColumn">
             <div id= "Top_Bar">
                 <image src = "Title.png" class="Squish_to_parent_height"></image>
             </div>
-            <div id="Drawbli_Area" onmousemove="mouseCoordinates(event)" onmousedown="downcount()" onmouseup="upcount()">
+            <div id="Drawbli_Area" scrollable ="true" onmousemove="mouseCoordinates(event)" onmousedown="downcount()" onmouseup="upcount()">
                 <!--<image src = "Title.png"></image>-->
-                <input type="text" style="display:none;" id="text_editor" value="hello" style="position:absolute;">
+                <image id="Canvas" src="Blank Template.png" height="" width="700px"></image>
+                <input type="text" style="display:none;" id="text_editor" value="hello" onmouseleave="not_in_text_editor=0;" onmousemove="not_in_text_editor=1;" style="position:absolute;">
+                
             </div>
         </div>
     </body>

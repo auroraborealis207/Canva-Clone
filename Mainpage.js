@@ -7,6 +7,7 @@ var current_counter = -1;
 var prev_current_counter = -1;
 var mouse_x = 0;
 var mouse_y = 0;
+var not_in_text_editor = 0;
 
 
 var is_mouse_down = 0;
@@ -40,13 +41,17 @@ fileInput.onchange = () => {
 
 function insert_image(){
     input_file.click()
-    canvas.push(document.createElement("img"));
-    canvas[canvas.length-1].src="Title - trans.png";
-    var current_element = document.createElement("img");
-    drawbli.appendChild(current_element);//canvas[canvas.lenght-1]
-    current_element.addEventListener("click",set_outline_appearence_event);
-    //current_element.src =selectedfile;
+    canvas.push(new Image());
+    console.log(selectedFile)
+    console.log(selectedFile.value)
+    canvas[canvas.length-1].src = selectedfile.value;
     
+    //canvas[canvas.length-1].src="Title - trans.png";
+    canvas[canvas.length-1].style.position = "absolute";
+    drawbli.appendChild(canvas[canvas.length-1]);//canvas[canvas.lenght-1]
+    var current_element = canvas[canvas.length-1];
+    drawbli.appendChild(canvas[canvas.length-1]);
+    recentEventListeners();
 }
 
 function insert_text(){
@@ -64,12 +69,17 @@ function insert_text(){
 function recentEventListeners(){
     var i_ = canvas.length-1;
     //current_element     make the box position absolute
-    // canvas[canvas.length-1].addEventListener("click",function(e,i=i_){current_counter=i;
-    //     move_Text();});
+    canvas[canvas.length-1].addEventListener("click",function(e,i=i_){current_counter=i;
+        move_Text();});
     if (canvas[canvas.length-1].tagName!="image"){
         canvas[canvas.length-1].addEventListener("dblclick",function(e,i=i_){current_counter=i;
         edit_Text();});
     }
+
+    // canvas[canvas.length-1].addEventListener("mousemove",function(e,i =i_){current_counter=i;
+    //     mouse_over();});
+    // canvas[canvas.length-1].addEventListener("mouseleave",function(e,i=i_){current_counter=i;
+    //     mouse_leave_section();});
     // canvas[canvas.length-1].addEventListener("ondrag",function(e,i=i_){current_counter=i;
     //         change_position();});
     
@@ -80,6 +90,8 @@ function move_Text(){
         canvas[current_counter].style.color = "green";
         canvas[current_counter].style.font_size = "45px";
         prev_current_counter = current_counter;
+        canvas[current_counter].style.border_style ="groove";
+        //console.log(current_counter);
         // if (is_mouse_down == 0){
         //     current_counter = -1;
         //     prev_current_counter = -1;
@@ -91,13 +103,15 @@ function move_Text(){
     }
     //e.style.color=white;
      console.log("ello");
-    
- }
+}
 
         
- function edit_Text(){
+ function edit_Text(i){
     in_edit =1;
+    in_edit_num =current_counter;
     console.log("f");
+    text_editor.style.position = "absolute";
+    text_editor.style.display="initial";
     text_editor.style.width=canvas[current_counter].style.width;
     text_editor.style.height=canvas[current_counter].style.height;
     text_editor.style.fontSize=canvas[current_counter].style.fontSize;
@@ -108,15 +122,25 @@ function move_Text(){
     text_editor.value = canvas[current_counter].innerHTML;
 
     canvas[current_counter].style.display = "none";
-    text_editor.style.display="block";
-
+    
+    current_counter =-1;
  }
 
  function exit_edit_text(){
-    canvas[current_counter].style.display = "none";
+    canvas[in_edit_num].style.display = "initial";
+    canvas[in_edit_num].innerHTML= text_editor.value;
     text_editor.style.display="none";
+    in_edit = 0;
+    in_edit_num = -1;
+    
  }
 
+ function detect_outside_text_edit(){
+    console.log(is_mouse_in_current_area)
+    if(not_in_text_editor == 0 && in_edit_num !=-1){
+        exit_edit_text();
+    }
+ }
 //  function change_position(){
 //     canvas[current_counter].style.top=mouse_y+"px";
 //     canvas[current_counter].style.left=mouse_x+"px";
@@ -128,6 +152,7 @@ function move_Text(){
     mouse_y = event.clientY;
 
     //add timer counter to smoothen out the animation
+    console.log(current_counter);
     if(current_counter!=-1){
         canvas[current_counter].style.top=mouse_y+"px";
         canvas[current_counter].style.left=mouse_x+"px";
@@ -136,8 +161,26 @@ function move_Text(){
 
  function downcount(){
     is_mouse_down =1;
+    current_counter=-1;
  }
 
  function upcount(){
     is_mouse_down =0;
+    current_counter =-1;
  }
+
+//  function mouse_over(){
+//     if (in_edit_num == current_counter){
+//         is_mouse_in_current_area = 1;
+//     }
+//     console.log('g');
+// //     current_counter =-1;
+// //  }
+
+//  function mouse_leave_section(){
+//     if (in_edit_num == current_counter){
+//         is_mouse_in_current_area = 0;
+//     }
+//     console.log("h")
+//     current_counter =-1;
+//  }
