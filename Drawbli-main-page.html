@@ -8,7 +8,8 @@
     <style>
         body{
             margin:0px;
-            
+            height:100%;
+            overflow:hidden;
             display:flex;
             justify-content: space-between;
         }
@@ -37,38 +38,42 @@
 
         #Top_Bar{
             background-color:aquamarine;
-            height:5%;
+            height:50px;
         }
         #icon{
             background-color: rgb(109, 243, 246);
         }
 
-        #Insert_Images{
-
+        .Side_buttons{
+            font-size: 100%;
+            background-color: rgb(230, 178, 115);
+            border-radius: 5px;
+            border-style: none;
+            text-align: center;
         }
         
     </style>
 
-    <body>
+    <body >
+        <input id="file-input" type="file" name="name" style="display: none;" />
         <div id = "end-column">
             <div >
                 <image src = "Title - trans.png" id= "icon"class= "Squish_to_parent_width" width = 150px></image>
             </div>
             <div >
-                <image src = "Title.png" class="Squish_to_parent_width"></image>
-                <p id="Insert_Images" onclick="insert_image()">Insert Images</p>
-                <button onclick="document.getElementById('file-input').click();">Open</button>
-                <input id="file-input" type="file" name="name" style="display: none;" />
+                <p id="Insert_Images" class = "Side_buttons" onclick="insert_image()">Insert Images</p>
+                <p id="Insert_Text" class = "Side_buttons" onclick="insert_text()">Insert Text Boxes</p>
+                
             </div>
         </div>
         <div id="CenterColumn">
             <div id= "Top_Bar">
                 <image src = "Title.png" class="Squish_to_parent_height"></image>
             </div>
-            <div id="Drawbli_Area">
+            <div id="Drawbli_Area" onmousemove="mouseCoordinates(event)" onmousedown="downcount()" onmouseup="upcount()">
                 <!--<image src = "Title.png"></image>-->
-                
-            </div >
+                <input type="text" style="display:none;" id="text_editor" value="hello" style="position:absolute;">
+            </div>
         </div>
     </body>
 
