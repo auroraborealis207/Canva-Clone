@@ -33,25 +33,33 @@ const para = document.createElement("p");
      
       drawbli.appendChild(para);
 
-const fileInput = input_file;
-fileInput.onchange = () => {
-    const selectedFile = fileInput.files[0];
-    console.log(selectedFile);
-}
+// const fileInput = input_file;
+// fileInput.onchange = () => {
+//     const selectedFile = fileInput.files[0];
+//     console.log(selectedFile);
+// }
 
 function insert_image(){
-    input_file.click()
     canvas.push(new Image());
-    console.log(selectedFile)
-    console.log(selectedFile.value)
-    canvas[canvas.length-1].src = selectedfile.value;
+    // console.log(selectedFile);
+    // console.log(selectedFile.value);
+    input_file.click();
+
+    drawbli.appendChild(canvas[canvas.length-1]);//canvas[canvas.lenght-1]
+    
+    //canvas[canvas.length-1].src = selectedfile.value;
     
     //canvas[canvas.length-1].src="Title - trans.png";
     canvas[canvas.length-1].style.position = "absolute";
-    drawbli.appendChild(canvas[canvas.length-1]);//canvas[canvas.lenght-1]
-    var current_element = canvas[canvas.length-1];
-    drawbli.appendChild(canvas[canvas.length-1]);
+    canvas[canvas.lenght-1].style.top="100px";
+    canvas[canvas.lenght-1].style.width="100px";
+    canvas[canvas.lenght-1].style.height="500px";
+    canvas[canvas.lenght-1].style.width="500px";
+
+   
     recentEventListeners();
+
+    
 }
 
 function insert_text(){
@@ -65,6 +73,18 @@ function insert_text(){
     recentEventListeners();
     
 }
+
+var openFile = function(file) {
+  var input = file.target;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var dataURL = reader.result;
+    var output = document.getElementById('output');
+    canvas[canvas.length-1].src = dataURL;
+    console.log(input.files[0]);
+  };
+  reader.readAsDataURL(input.files[0]);
+};
 
 function recentEventListeners(){
     var i_ = canvas.length-1;
@@ -86,11 +106,15 @@ function recentEventListeners(){
 }
 
 function move_Text(){
+    
     if(current_counter!=prev_current_counter){
-        canvas[current_counter].style.color = "green";
-        canvas[current_counter].style.font_size = "45px";
+        if (canvas[canvas.length-1].tagName!="image"){
+            canvas[current_counter].style.color = "green";
+            canvas[current_counter].style.font_size = "45px";
+            canvas[current_counter].style.border_style ="groove";
+        }
         prev_current_counter = current_counter;
-        canvas[current_counter].style.border_style ="groove";
+        
         //console.log(current_counter);
         // if (is_mouse_down == 0){
         //     current_counter = -1;
@@ -128,7 +152,7 @@ function move_Text(){
 
  function exit_edit_text(){
     canvas[in_edit_num].style.display = "initial";
-    canvas[in_edit_num].innerHTML= text_editor.value;
+    canvas[in_edit_num].innerHTML = text_editor.value;
     text_editor.style.display="none";
     in_edit = 0;
     in_edit_num = -1;
@@ -152,10 +176,10 @@ function move_Text(){
     mouse_y = event.clientY;
 
     //add timer counter to smoothen out the animation
-    console.log(current_counter);
+    console.log("current Counter",current_counter);
     if(current_counter!=-1){
-        canvas[current_counter].style.top=mouse_y+"px";
-        canvas[current_counter].style.left=mouse_x+"px";
+        canvas[current_counter-1].style.top=mouse_y+"px";
+        canvas[current_counter-1].style.left=mouse_x+"px";
     }
  }
 

@@ -5,7 +5,7 @@ var text_array = [];
 var input_user = document.getElementById("user");
 var input_password = document.getElementById("password");
 
-function check_credentials (){
+function check_credentials(){
     login_id = input_user.value;
     console.log(login_id);
     password = input_password.value;
@@ -17,5 +17,5 @@ function read_csv (username,password_){
    // console.log(read_file("login-data.csv"))
    const fs = require('fs')
    reader= readFile("Login-data.txt");
-reader.
+    reader.
 }
